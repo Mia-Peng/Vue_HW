@@ -21,24 +21,29 @@
             color: #C7B09E;
         }
 
-        aside ol{
-            list-style: none;
+        .container{
+            display: flex;
+            justify-content: center;
         }
-        aside ol li{
-            width: 100px;
-            border-bottom: 1px solid #ddd;
-            padding: 4px;
-            text-align: center;
+        aside{
+            width: 120px;
+        }
+        .asideContent a{
+            text-decoration: none;
+            color: #000;
         }
         .mainSec{
+            width: 80%;
+        }
+        .mainSec_box{
             cursor: pointer;
             border-bottom: 1px solid grey;
-            padding: 20px;
+            padding: 0 20px;
         }
-        .mainSec:hover{
+        .mainSec_box:hover{
             background-color: #c7b09e62;
         }
-        .mainSec img{
+        .mainSec_box img{
             width: 36px;
             height: 36px;
             padding: 4px;
@@ -76,20 +81,24 @@
     <div id="app">
         <div class="container">
             <aside>
-                <ol>
-                    <li v-for="topic in aisdeList">{{topic}}</li>
-                </ol>
-            </aside>
-            <main v-for="(faq, index) in list" @click="toggleAnswer(index)" class="mainSec">
-                <div class="question">
-                    <img :src="faq.icon" alt="">
-                    <div class="title">
-                        <h3>{{faq.titleZH}}</h3>
-                        <h5>{{faq.titleEN}}</h5>
-                    </div>
+                <div v-for="a in aisdeList" class="asideContent">
+                    <a :href="a.href">
+                        {{a.title}}
+                    </a>
                 </div>
-                <div class="answer">
-                    <p v-if="faq.toggle">{{faq.content}}</p>
+            </aside>
+            <main class="mainSec">
+                <div v-for="(faq, index) in list" @click="toggleAnswer(index)" class="mainSec_box" :id="faq.id">
+                    <div class="question">
+                        <img :src="faq.icon" alt="">
+                        <div class="title">
+                            <h3>{{faq.titleZH}}</h3>
+                            <h5>{{faq.titleEN}}</h5>
+                        </div>
+                    </div>
+                    <div class="answer">
+                        <p v-if="faq.toggle">{{faq.content}}</p>
+                    </div>
                 </div>
             </main>
         </div>
@@ -113,14 +122,45 @@
     </div>
 
 
-    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/vue@3.4.4/dist/vue.global.js"></script>
     <script>
         Vue.createApp({
             data(){
                 return{
                     // toggle: false,
-                    aisdeList:["服務諮詢", "現場會勘", "設計提案", "簽訂設計契約", "工程報價", "簽訂工程契約", "驗收交屋", "售後服務"
-                    ],
+                    aisdeList:[
+                        {
+                            title: "服務諮詢",
+                            href: "#workflow-01"
+                        },
+                        {
+                            title: "現場會勘", 
+                            href:"#workflow-02" 
+                        },
+                        {
+                            title: "設計提案",
+                            href: "#workflow-03"
+                        }, 
+                        {
+                            title: "簽訂設計契約",
+                            href: "#workflow-04"
+                        }, 
+                        {
+                            title: "工程報價",
+                            href: "#workflow-05"
+                        }, 
+                        {
+                            title: "簽訂工程契約",
+                            href: "#workflow-06"
+                        }, 
+                        {
+                            title: "驗收交屋", 
+                            href: "#workflow-07"
+                        },
+                        {
+                            title: "售後服務",
+                            href: "#workflow-08"
+                        }],
                     list:[{
                         id: "workflow-01",
                         icon: "img/workflow_icon_01.png",
