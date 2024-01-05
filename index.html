@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
         #nav ul{
             list-style: none;
             display: flex;
@@ -20,7 +24,9 @@
         #nav ul a:hover{
             color: #C7B09E;
         }
-
+        #app{
+            margin-top: 20px;
+        }
         .container{
             display: flex;
             justify-content: center;
@@ -63,6 +69,21 @@
         }
         .answer{
             padding: 0 50px;
+        }
+        #items{
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .item{
+            background-color: #C7B09E;
+            width: 300px;
+        }
+        .img img{
+            margin: 0;
+            width: 100%;
         }
         
     </style>
