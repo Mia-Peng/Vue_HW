@@ -14,6 +14,7 @@
             display: flex;
             justify-content: space-evenly;
             border-bottom: #000 solid 1px;
+            margin: 24px;
         }
         #nav ul a,img{
             text-decoration: none;
@@ -89,17 +90,18 @@
     </style>
 </head>
 <body>
-    <div id="nav">
-        <div class="navContainer">
-            <ul>
-                <li v-for="items in logo"><img :src="items.imgSrc" alt="logo"></li>
-                <li v-for="items in menu">
-                    <a :href="items.link">{{items.text}}</a>
-                </li>
-            </ul>
-        </div>
-    </div>
     <div id="app">
+        <div id="nav">
+            <div class="navContainer">
+                <ul>
+                    <li v-for="items in logo"><img :src="items.imgSrc" alt="logo"></li>
+                    <li v-for="items in menu">
+                        <a :href="items.link">{{items.text}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    
         <div class="container">
             <aside>
                 <div v-for="a in aisdeList" class="asideContent">
@@ -123,23 +125,24 @@
                 </div>
             </main>
         </div>
-    </div>
-    <div id="items" >
-        <div v-for="item in list" class="item">
-            <a href="#">
-                <div class="img">
-                    <img :src="item.imgUrl" :alt="item.alt">
-                </div>
-            </a>
-            <div class="text">
-                <div class="title">
-                    <h3>{{item.title}}</h3>
-                </div>
-                <div class="description">
-                    <p>{{item.description}}</p>
+        <div id="items" >
+            <div v-for="item in itemlist" class="item">
+                <a href="#">
+                    <div class="img">
+                        <img :src="item.imgUrl" :alt="item.alt">
+                    </div>
+                </a>
+                <div class="text">
+                    <div class="title">
+                        <h3>{{item.title}}</h3>
+                    </div>
+                    <div class="description">
+                        <p>{{item.description}}</p>
+                    </div>
                 </div>
             </div>
         </div>
+    
     </div>
 
 
@@ -246,20 +249,7 @@
                         titleEN: "After-sales Service",
                         content: "睦和致力於提供完善的售後服務，針對工程內容提供至少一年保固以確保您的滿意度和品質。此外，我們隨時為您提供後續諮詢服務，以回答任何與工程相關的問題或提供進一步協助。您可以放心依靠我們的團隊，我們將以專業態度和積極主動的服務，為您提供持續支持。"
                     }],
-                }
-            },
-            methods: {
-                toggleAnswer(index){
-                    this.list[index].toggle = !this.list[index].toggle;
-                }
-            }
-        }).mount('#app')
-    </script>
-    <script>
-        Vue.createApp({
-            data(){
-                return{
-                    list: [{
+                    itemlist: [{
                         title: '沐春 Spring',
                         description: '融合了沐浴與春天的元素，營造出一個清新、舒適的空間',
                         imgUrl: 'img/portfolio_01.webp',
@@ -295,16 +285,7 @@
                         imgUrl: 'img/portfolio_06.webp',
                         alt: '品茗'
                         }
-                    ]
-                }
-            },
-        }).mount('#items')
-
-    </script>
-    <script>
-        Vue.createApp({
-            data(){
-                return{
+                    ],
                     logo: [
                         { imgSrc: 'img/nav_Logo_black.webp', link: 'index.html' }
                     ],
@@ -315,11 +296,14 @@
                         { link: 'workflow.html',text: '服務流程' },
                         { link: 'contact.html',text: '聯絡我們' }
                     ]
-                        
                 }
             },
-        }).mount('#nav')
-
+            methods: {
+                toggleAnswer(index){
+                    this.list[index].toggle = !this.list[index].toggle;
+                }
+            }
+        }).mount('#app')
     </script>
     
 </body>
